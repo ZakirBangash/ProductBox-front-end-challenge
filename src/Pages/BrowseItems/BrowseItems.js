@@ -1,51 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../../Components/Product/Product";
+import { FetchItems } from "../../Services/api";
 import "./BrowseItems.css";
 function BrowseItems() {
+  const [item, setItem] = useState(null);
+
+  useEffect(() => {
+    const fetchItemsFromBackend = async () => {
+      const data = await FetchItems();
+      setItem(data);
+    };
+    fetchItemsFromBackend();
+  }, []);
+
   return (
     <div className="browseItems">
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
-      <Product
-        id="12"
-        title="basket"
-        price={234}
-        rating={352}
-        image="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838"
-      />
+      {item?.map((item) => (
+        <Product
+          id={item.id}
+          title={item.name}
+          price={item.price}
+          image={item.img}
+        />
+      ))}
     </div>
   );
 }

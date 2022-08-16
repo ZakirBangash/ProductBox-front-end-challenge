@@ -1,0 +1,43 @@
+.registerScreen {
+    margin-top: 100px;
+}
+
+.register-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px !important;
+}
+
+.form {
+    max-width: 40rem;
+    margin: 0 auto;}
+input {
+    padding: 10px;
+}
+
+  
+  .form > div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .form label {
+    margin: 0.4rem 0;
+    display: block;
+  }
+
+
+input:hover,
+select:hover,
+textarea:hover {
+  border: 0.1rem #404040 solid;
+}
+
+
+
+button.primary {
+  background-color: #f0c040;
+}
+button.block {
+  width: 100%;
+} 

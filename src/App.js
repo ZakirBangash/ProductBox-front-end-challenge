@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Header from "./Pages/Header/Header";
 import BrowseItems from "./Pages/BrowseItems/BrowseItems";
+import AddItem from "./Pages/AddItem/AddItem";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           element={
             <div className="app">
               <Header />
-              this is add item
+              <AddItem />
             </div>
           }
         />
