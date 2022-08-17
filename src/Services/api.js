@@ -7,6 +7,25 @@ const instance = axios.create({
 export const FetchItems = async () => {
   try {
     const { data } = await instance.get("/items");
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addItem = async (itemName, itemPrice, imgUrl) => {
+  console.log(itemName, itemPrice, imgUrl);
+  let name = itemName;
+  let price = itemPrice;
+  let img = imgUrl;
+  try {
+    const { data } = await instance.post("/items", {
+      name,
+      img,
+      price,
+    });
+    console.log("hello: ", data);
     return data;
   } catch (error) {
     console.log(error);

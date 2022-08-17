@@ -2,20 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AddItem.css";
 import Button from "@mui/material/Button";
+import { addItem } from "../../Services/api";
 
 export default function AddItem(props) {
   const [itemName, setItemName] = useState(null);
   const [itemPrice, setItemPrice] = useState(null);
+  const [imgUrl, setImageUrl] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    addItem(itemName, itemPrice, imgUrl);
+    setItemName(null);
+    setItemPrice(null);
+    setImageUrl(null);
   };
 
   return (
-    <div className="registerScreen">
+    <div className="addItemScreen">
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1 className="register-heading">Add item for sale</h1>
+          <h1 className="addItem-heading">Add item for sale</h1>
         </div>
 
         <div>
@@ -46,13 +52,13 @@ export default function AddItem(props) {
             id="url"
             placeholder="Enter image url"
             required
-            onChange={(e) => setItemPrice(e.target.value)}
+            onChange={(e) => setImageUrl(e.target.value)}
           ></input>
         </div>
 
         <div>
           <label />
-          <Button className="primary" type="submit">
+          <Button onClick={submitHandler} className="primary" type="submit">
             Submit
           </Button>
         </div>
