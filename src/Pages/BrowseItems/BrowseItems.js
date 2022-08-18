@@ -23,6 +23,8 @@ function BrowseItems() {
           image={item.img}
         />
       ))}
+
+      {/* <Product id={23} title="Bag" price={234} image={`./img/bed.jpg`} /> */}
     </div>
   );
 }
