@@ -23,3 +23,7 @@ There was Cors policy issue while connecting to back-end, then install cors pack
 and I add the following statement after importing cors 
 
 app.use(cors());
+
+### snapshots of app
+
+image.png
