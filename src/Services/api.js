@@ -7,7 +7,6 @@ const instance = axios.create({
 export const FetchItems = async () => {
   try {
     const { data } = await instance.get("/items");
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

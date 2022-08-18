@@ -1,49 +1,60 @@
 import React, { useReducer, createContext } from "react";
+import { addressReducer } from "./AddressReducer";
 import { reducer } from "./reducer";
 
-const initialState = {
-  cart: [
-    {
-      id: "343243452",
-      title: "New apple phone with best price",
-      price: 453.99,
-      image:
-        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-green-select-2019?wid=834&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1566956144838",
-    },
-  ],
-};
+const cartState = [];
+const addressState = [];
 
 // Create Context
-export const GlobalContext = createContext(initialState);
+export const GlobalContext = createContext(cartState);
 
 export const GlobalProvider = ({ children }) => {
-  let [state, dispatch] = useReducer(reducer, initialState);
+  let [state, dispatch] = useReducer(reducer, cartState);
+  let [AddressState, Addressdispatch] = useReducer(
+    addressReducer,
+    addressState
+  );
 
-  function addItemForSale(itemObject) {
+  function addItemToCart(id, title, price, image) {
     dispatch({
-      type: "AddItemForSale",
+      type: "AddItemToCart",
       payload: {
-        Amount: itemObject.Amount,
-        text: itemObject.text,
-        id: itemObject.id,
+        id,
+        title,
+        price,
+        image,
       },
     });
   }
 
   function deleteItem(id) {
-    console.log(id);
+    console.log("this is id", id);
     dispatch({
       type: "DeleteItem",
       payload: id,
     });
   }
 
+  function addShippingAddress(name, city, address, country) {
+    Addressdispatch({
+      type: "AddShippingAddress",
+      payload: {
+        name,
+        city,
+        address,
+        country,
+      },
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
-        initialState: state,
-        addItemForSale,
+        cartState: state,
+        addItemToCart,
         deleteItem,
+        addressState: AddressState,
+        addShippingAddress,
       }}
     >
       {children}

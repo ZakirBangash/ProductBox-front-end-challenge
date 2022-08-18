@@ -1,11 +1,10 @@
 export const reducer = (state, action) => {
-  console.log(state);
   switch (action.type) {
-    case "AddItemForSale": {
+    case "AddItemToCart": {
       return [...state, action.payload];
     }
     case "DeleteItem": {
-      const newState = state.filter((trans) => trans.id !== action.payload);
+      const newState = state.filter((item) => item.id !== action.payload);
       console.log(newState);
       return newState;
     }

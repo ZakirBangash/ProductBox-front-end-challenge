@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./AddItem.css";
 import Button from "@mui/material/Button";
 import { addItem } from "../../Services/api";
@@ -9,12 +8,16 @@ export default function AddItem(props) {
   const [itemPrice, setItemPrice] = useState(null);
   const [imgUrl, setImageUrl] = useState(null);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    addItem(itemName, itemPrice, imgUrl);
-    setItemName(null);
-    setItemPrice(null);
-    setImageUrl(null);
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    const data = await addItem(itemName, itemPrice, imgUrl);
+    if (data) {
+      alert("Item Added Successfully");
+      setItemName("");
+      setItemPrice("");
+      setImageUrl("");
+    }
   };
 
   return (
@@ -31,6 +34,7 @@ export default function AddItem(props) {
             id="name"
             placeholder="Enter name"
             required
+            value={itemName}
             onChange={(e) => setItemName(e.target.value)}
           ></input>
         </div>
@@ -41,6 +45,7 @@ export default function AddItem(props) {
             id="price"
             placeholder="Enter Price"
             required
+            value={itemPrice}
             onChange={(e) => setItemPrice(e.target.value)}
           ></input>
         </div>
@@ -52,6 +57,7 @@ export default function AddItem(props) {
             id="url"
             placeholder="Enter image url"
             required
+            value={imgUrl}
             onChange={(e) => setImageUrl(e.target.value)}
           ></input>
         </div>

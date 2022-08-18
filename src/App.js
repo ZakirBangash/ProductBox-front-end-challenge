@@ -4,6 +4,9 @@ import Home from "./Pages/Home/Home";
 import Header from "./Pages/Header/Header";
 import BrowseItems from "./Pages/BrowseItems/BrowseItems";
 import AddItem from "./Pages/AddItem/AddItem";
+import Cart from "./Pages/Cart/Cart";
+import ShippingAddressScreen from "./Pages/Checkout/Shipping";
+import PlaceOrderScreen from "./Pages/OrderScreen/OrderScreen";
 
 function App() {
   return (
@@ -32,16 +35,34 @@ function App() {
           element={
             <div className="app">
               <Header />
-              this is Cart
+              <Cart />
             </div>
           }
         />
         <Route
-          path="add-item"
+          path="addItem"
           element={
             <div className="app">
               <Header />
               <AddItem />
+            </div>
+          }
+        />
+        <Route
+          path="shipping"
+          element={
+            <div className="app">
+              <Header />
+              <ShippingAddressScreen />
+            </div>
+          }
+        />
+        <Route
+          path="order"
+          element={
+            <div className="app">
+              <Header />
+              <PlaceOrderScreen />
             </div>
           }
         />

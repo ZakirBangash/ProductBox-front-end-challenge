@@ -1,0 +1,49 @@
+.placeOrderPage {
+    
+    margin: 20px;
+    margin-top: 100px;
+}
+
+.placeOrder {
+    display: flex;
+    padding: 10px;
+}
+
+.order-left {
+    flex: 0.6;
+    
+}
+
+.order-right {
+     flex: 0.3; 
+     margin-left: 40px;
+    
+}
+
+.order-btn {
+    width: 100% !important;
+    background-color: #f0c040 !important;
+}
+.order-content > p {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1024px) {
+    .placeOrder {
+        display: flex;
+         flex-direction: column;
+    }   
+  }
+  
+
+.order-card {
+    margin: 10px 0;
+}
+
+
+.small {
+    max-width: 20%;
+}
+
+

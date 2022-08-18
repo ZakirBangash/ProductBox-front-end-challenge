@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Product.css";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { GlobalContext } from "../../ContextAPI/GlobalState";
 
-const Product = ({ id, title, price, rating, image }) => {
-  const addToBasket = () => {
-    console.log("Added ");
+const Product = ({ id, title, price, image }) => {
+  const { addItemToCart } = useContext(GlobalContext);
+
+  const addItemToBasket = () => {
+    addItemToCart(id, title, price, image);
   };
 
   return (
@@ -25,7 +26,7 @@ const Product = ({ id, title, price, rating, image }) => {
             <strong>{price}</strong>
           </div>
         </div>
-        <Button onClick={addToBasket}>Add to Basket</Button>
+        <Button onClick={() => addItemToBasket()}>Add to Basket</Button>
       </CardContent>
     </Card>
   );
