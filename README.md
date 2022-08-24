@@ -2,7 +2,7 @@
 
 ## Library used in Frontend
 
-I used material UI for front-end, axios for data fetching.
+I used material UI for front-end, axios for data fetching. and React-error-boundary for error handling.
 
 ## State Management
 
@@ -12,15 +12,12 @@ For state management I used context api, there is available alternatives to Cont
 It is recommended to fetch data in React Query or RTK Query or any other, it isn't considered a good practice to fetch data in useEffect, because sometime it becomes headache, because it can cause performance isssue. But here the project isn't that much large, it is small project and predictable so i preffered to use UseEffect for data fetching.
 
 
-
-
 ## Available Scripts
 
 To start the front-end 
 
 ### `yarn start`
 
-Runs the app in the development mode.\
 
 ## Issue that i encounterd
 
