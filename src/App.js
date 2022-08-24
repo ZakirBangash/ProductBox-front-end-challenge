@@ -7,76 +7,84 @@ import AddItem from "./Pages/AddItem/AddItem";
 import Cart from "./Pages/Cart/Cart";
 import ShippingAddressScreen from "./Pages/Checkout/Shipping";
 import PlaceOrderScreen from "./Pages/OrderScreen/OrderScreen";
+import { ErrorBoundary } from "react-error-boundary";
+import { Fallback } from "./Components/Fallback";
 
 function App() {
-  return (
-    <div className="app">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="app">
-              <Header />
-              <Home />
-            </div>
-          }
-        />
-        <Route
-          path="browseItems"
-          element={
-            <div className="app">
-              <Header />
-              <BrowseItems />
-            </div>
-          }
-        />
-        <Route
-          path="cart"
-          element={
-            <div className="app">
-              <Header />
-              <Cart />
-            </div>
-          }
-        />
-        <Route
-          path="addItem"
-          element={
-            <div className="app">
-              <Header />
-              <AddItem />
-            </div>
-          }
-        />
-        <Route
-          path="shipping"
-          element={
-            <div className="app">
-              <Header />
-              <ShippingAddressScreen />
-            </div>
-          }
-        />
-        <Route
-          path="order"
-          element={
-            <div className="app">
-              <Header />
-              <PlaceOrderScreen />
-            </div>
-          }
-        />
+  const errorHandler = (error, errorInfo) => {
+    console.log("Error Hanlding:", error, errorInfo);
+  };
 
-        <Route
-          path="*"
-          element={
-            <>
-              <div className="h1">Not Found</div>
-            </>
-          }
-        />
-      </Routes>
-    </div>
+  return (
+    <ErrorBoundary FallbackComponent={Fallback} onError={errorHandler}>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="app">
+                <Header />
+                <Home />
+              </div>
+            }
+          />
+          <Route
+            path="browseItems"
+            element={
+              <div className="app">
+                <Header />
+                <BrowseItems />
+              </div>
+            }
+          />
+          <Route
+            path="cart"
+            element={
+              <div className="app">
+                <Header />
+                <Cart />
+              </div>
+            }
+          />
+          <Route
+            path="addItem"
+            element={
+              <div className="app">
+                <Header />
+                <AddItem />
+              </div>
+            }
+          />
+          <Route
+            path="shipping"
+            element={
+              <div className="app">
+                <Header />
+                <ShippingAddressScreen />
+              </div>
+            }
+          />
+          <Route
+            path="order"
+            element={
+              <div className="app">
+                <Header />
+                <PlaceOrderScreen />
+              </div>
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <>
+                <div className="h1">Not Found</div>
+              </>
+            }
+          />
+        </Routes>
+      </div>
+    </ErrorBoundary>
   );
 }
 

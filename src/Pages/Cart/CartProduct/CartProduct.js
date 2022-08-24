@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import "./CartProduct.css";
 import Button from "@mui/material/Button";
 import { GlobalContext } from "../../../ContextAPI/GlobalState";
+import "./CartProduct.css";
 
 const CartProduct = ({ id, title, price, image }) => {
   const { deleteItem } = useContext(GlobalContext);

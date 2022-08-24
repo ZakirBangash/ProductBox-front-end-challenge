@@ -3,11 +3,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import "./Cart.css";
-import cartSvg from "./cartSvg.svg";
-import emptyCart from "./emptyCart.svg";
 import CartProduct from "./CartProduct/CartProduct";
 import { GlobalContext } from "../../ContextAPI/GlobalState";
+import cartSvg from "./cartSvg.svg";
+import emptyCart from "./emptyCart.svg";
+import "./Cart.css";
 
 const Cart = () => {
   const { cartState } = useContext(GlobalContext);

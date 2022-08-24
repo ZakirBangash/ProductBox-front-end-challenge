@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import "./OrderScreen.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { GlobalContext } from "../../ContextAPI/GlobalState";
+import "./OrderScreen.css";
 
 export default function PlaceOrderScreen(props) {
   const { cartState, addressState } = useContext(GlobalContext);

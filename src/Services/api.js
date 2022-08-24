@@ -4,18 +4,18 @@ const instance = axios.create({
   baseURL: "http://localhost:3000",
 });
 
-export const FetchItems = async () => {
+export const FetchItems = async (errorHanldler) => {
   try {
     const { data } = await instance.get("/items");
     console.log(data);
     return data;
   } catch (error) {
     console.log(error);
+    errorHanldler(error);
   }
 };
 
-export const addItem = async (itemName, itemPrice, imgUrl) => {
-  console.log(itemName, itemPrice, imgUrl);
+export const addItem = async (itemName, itemPrice, imgUrl, errorHandler) => {
   let name = itemName;
   let price = itemPrice;
   let img = imgUrl;
@@ -25,9 +25,8 @@ export const addItem = async (itemName, itemPrice, imgUrl) => {
       img,
       price,
     });
-    console.log("hello: ", data);
     return data;
   } catch (error) {
-    console.log(error);
+    errorHandler(error);
   }
 };

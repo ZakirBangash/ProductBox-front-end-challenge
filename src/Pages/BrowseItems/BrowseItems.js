@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useErrorHandler } from "react-error-boundary";
 import Product from "../../Components/Product/Product";
 import { FetchItems } from "../../Services/api";
 import "./BrowseItems.css";
+
 function BrowseItems() {
   const [item, setItem] = useState(null);
+  const errorHanldler = useErrorHandler();
 
   useEffect(() => {
     const fetchItemsFromBackend = async () => {
-      const data = await FetchItems();
+      const data = await FetchItems(errorHanldler);
       setItem(data);
     };
     fetchItemsFromBackend();
@@ -17,6 +20,7 @@ function BrowseItems() {
     <div className="browseItems">
       {item?.map((item) => (
         <Product
+          key={item.id}
           id={item.id}
           title={item.name}
           price={item.price}

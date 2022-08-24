@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import "./AddItem.css";
+import { useErrorHandler } from "react-error-boundary";
 import Button from "@mui/material/Button";
 import { addItem } from "../../Services/api";
+import InputLabel from "../../Components/InputLabel";
+import "./AddItem.css";
 
 export default function AddItem(props) {
-  const [itemName, setItemName] = useState(null);
-  const [itemPrice, setItemPrice] = useState(null);
-  const [imgUrl, setImageUrl] = useState(null);
+  const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+  const [imgUrl, setImageUrl] = useState("");
+  const errorHanldler = useErrorHandler();
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const data = await addItem(itemName, itemPrice, imgUrl);
+    const data = await addItem(itemName, itemPrice, imgUrl, errorHanldler);
     if (data) {
       alert("Item Added Successfully");
       setItemName("");
@@ -27,43 +30,25 @@ export default function AddItem(props) {
           <h1 className="addItem-heading">Add item for sale</h1>
         </div>
 
+        <InputLabel
+          name={itemName}
+          setItem={setItemName}
+          title="Name"
+          placeholder="Enter Name"
+        />
+        <InputLabel
+          name={itemPrice}
+          setItem={setItemPrice}
+          title="Price"
+          placeholder=" Enter Price"
+        />
+        <InputLabel
+          name={imgUrl}
+          setItem={setImageUrl}
+          title="Image URL"
+          placeholder="Enter Image URL"
+        />
         <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter name"
-            required
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="text"
-            id="price"
-            placeholder="Enter Price"
-            required
-            value={itemPrice}
-            onChange={(e) => setItemPrice(e.target.value)}
-          ></input>
-        </div>
-
-        <div>
-          <label htmlFor="url">Image Url</label>
-          <input
-            type="text"
-            id="url"
-            placeholder="Enter image url"
-            required
-            value={imgUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          ></input>
-        </div>
-
-        <div>
-          <label />
           <Button onClick={submitHandler} className="primary" type="submit">
             Submit
           </Button>
